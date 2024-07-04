@@ -12,28 +12,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Expense> _expensesList = [
-    Expense(
-        title: '1',
-        price: 1,
-        category: Category.enjoyment,
-        date: DateTime.now()),
-    Expense(
-        title: '2',
-        price: 2,
-        category: Category.enjoyment,
-        date: DateTime.now()),
-    Expense(
-        title: '3',
-        price: 30,
-        category: Category.enjoyment,
-        date: DateTime.now()),
-    Expense(
-        title: '4',
-        price: 40,
-        category: Category.enjoyment,
-        date: DateTime.now()),
-  ];
+  // List<Expense> _expensesList = [
+  //   Expense(
+  //       title: '1',
+  //       price: 1,
+  //       category: Category.enjoyment,
+  //       date: DateTime.now()),
+  //   Expense(
+  //       title: '2',
+  //       price: 2,
+  //       category: Category.enjoyment,
+  //       date: DateTime.now()),
+  //   Expense(
+  //       title: '3',
+  //       price: 30,
+  //       category: Category.enjoyment,
+  //       date: DateTime.now()),
+  //   Expense(
+  //       title: '4',
+  //       price: 40,
+  //       category: Category.enjoyment,
+  //       date: DateTime.now()),
+  // ];
+  List<Expense> _expensesList = [];
 
   void openBottomModal() {
     showModalBottomSheet(
@@ -53,11 +54,16 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.pop(context);
   }
 
-  void refreshHomeScreen() {
-    setState(() {});
+  void deleteExpense(Expense expense, int indexForUndoDelete) {
+    setState(() {
+      _expensesList.remove(expense);
+    });
+
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    showSnackBarAfterDelete(expense, indexForUndoDelete);
   }
 
-  void showSnackBarAfterDelete() {
+  void showSnackBarAfterDelete(Expense expense, int indexForUndoDelete) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
@@ -66,7 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Text('Expense deleted successfully'),
             TextButton(
               onPressed: () {
-                _undoDelete(expenseToDeleteIndex!, indexToDeleteIndex);
+                ScaffoldMessenger.of(context).removeCurrentSnackBar();
+
+                undoDelete(expense, indexForUndoDelete);
               },
               child: Text('Undo'),
             ),
@@ -76,18 +84,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _undoDelete(Expense expense, int index) {
-    _expensesList.insert(index, expense);
-    refreshHomeScreen();
+  void undoDelete(Expense expense, int indexForUndoDelete) {
+    setState(() {
+      _expensesList.insert(indexForUndoDelete, expense);
+    });
   }
-
-  Expense? expenseToDeleteIndex = Expense(
-    title: 'title',
-    price: 123,
-    category: Category.work,
-    date: DateTime.now(),
-  );
-  int indexToDeleteIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -112,10 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: AllExpenses(
                 expensesList: _expensesList,
-                refreshHomeScreen: refreshHomeScreen,
-                showSnackBarAfterDelete: showSnackBarAfterDelete,
-                itemToDeleteIndex: expenseToDeleteIndex!,
-                indexToDelete: indexToDeleteIndex,
+                deleteExpense: deleteExpense,
               ),
             ),
             SizedBox(

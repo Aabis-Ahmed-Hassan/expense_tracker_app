@@ -76,6 +76,9 @@ class _AddExpenseState extends State<AddExpense> {
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
+            SizedBox(
+              height: 16,
+            ),
             TextField(
               controller: _titleController,
               maxLength: 50,
