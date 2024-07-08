@@ -130,6 +130,7 @@ class _AddExpenseState extends State<AddExpense> {
                     _chooseCategory(i!);
                   },
                   initialSelection: _selectedCategory,
+                  textStyle: Theme.of(context).textTheme.titleSmall,
                   dropdownMenuEntries: [
                     for (var i = 0; i < Category.values.length; i++)
                       DropdownMenuEntry(

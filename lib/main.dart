@@ -8,10 +8,10 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
-  var kPrimaryColor = ColorScheme.fromSeed(seedColor: Colors.purple);
+  var kPrimaryColor = ColorScheme.fromSeed(seedColor: Colors.blue);
 
-  var kDarkColor = ColorScheme.fromSeed(
-      brightness: Brightness.dark, seedColor: Colors.purple);
+  var kDarkColor =
+      ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: Colors.blue);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
           titleSmall: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w500,
-            color: Colors.black,
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -45,6 +44,9 @@ class MyApp extends StatelessWidget {
               kDarkColor.onSecondaryContainer,
             ),
           ),
+        ),
+        iconTheme: IconThemeData().copyWith(
+          color: Colors.white,
         ),
       ),
       theme: ThemeData().copyWith(
@@ -81,8 +83,11 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        iconTheme: IconThemeData().copyWith(
+          color: Colors.black,
+        ),
       ),
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       home: HomeScreen(),
     );
   }

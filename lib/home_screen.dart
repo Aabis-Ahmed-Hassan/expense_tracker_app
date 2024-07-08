@@ -13,10 +13,16 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Expense> _expensesList = [
-
-    Expense(title: 'Grocery', price: 100, category: Category.bills, date: DateTime.now()),
-    Expense(title: 'Movie', price: 5, category: Category.enjoyment, date: DateTime.now()),
-
+    Expense(
+        title: 'Grocery',
+        price: 100,
+        category: Category.bills,
+        date: DateTime.now()),
+    Expense(
+        title: 'Movie',
+        price: 5,
+        category: Category.enjoyment,
+        date: DateTime.now()),
   ];
 
   void openBottomModal() {
