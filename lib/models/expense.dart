@@ -19,9 +19,9 @@ class Expense {
   String uid;
 
   Map<Category, IconData> icon = {
-    Category.enjoyment: Icons.add,
-    Category.bills: Icons.remove,
-    Category.fee: Icons.abc_outlined,
-    Category.work: Icons.access_alarm_sharp,
+    Category.work: Icons.work,
+    Category.enjoyment: Icons.sports_esports,
+    Category.bills: Icons.receipt,
+    Category.fee: Icons.payment,
   };
 }
