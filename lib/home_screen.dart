@@ -12,29 +12,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // List<Expense> _expensesList = [
-  //   Expense(
-  //       title: '1',
-  //       price: 1,
-  //       category: Category.enjoyment,
-  //       date: DateTime.now()),
-  //   Expense(
-  //       title: '2',
-  //       price: 2,
-  //       category: Category.enjoyment,
-  //       date: DateTime.now()),
-  //   Expense(
-  //       title: '3',
-  //       price: 30,
-  //       category: Category.enjoyment,
-  //       date: DateTime.now()),
-  //   Expense(
-  //       title: '4',
-  //       price: 40,
-  //       category: Category.enjoyment,
-  //       date: DateTime.now()),
-  // ];
-  List<Expense> _expensesList = [];
+  List<Expense> _expensesList = [
+
+    Expense(title: 'Grocery', price: 100, category: Category.bills, date: DateTime.now()),
+    Expense(title: 'Movie', price: 5, category: Category.enjoyment, date: DateTime.now()),
+
+  ];
 
   void openBottomModal() {
     showModalBottomSheet(

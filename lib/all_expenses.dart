@@ -41,10 +41,7 @@ class AllExpenses extends StatelessWidget {
                         children: [
                           Text(
                             expensesList[index].title,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
                           SizedBox(
                             height: 16,
@@ -55,7 +52,7 @@ class AllExpenses extends StatelessWidget {
                               Expanded(
                                 child: Text(
                                   '\$${expensesList[index].price}',
-                                  style: TextStyle(fontWeight: FontWeight.w500),
+                                  style: Theme.of(context).textTheme.titleSmall,
                                 ),
                               ),
                               Expanded(
@@ -72,6 +69,9 @@ class AllExpenses extends StatelessWidget {
                                     Text(
                                       _dateFormatter
                                           .format(expensesList[index].date),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall,
                                     ),
                                   ],
                                 ),
