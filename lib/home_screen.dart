@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void openBottomModal() {
     showModalBottomSheet(
         isScrollControlled: true,
+        useSafeArea: true,
         context: context,
         builder: (context) {
           return AddExpense(saveExpenseOnHomeScreen: saveExpenseOnHomeScreen);
